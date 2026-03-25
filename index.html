@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Birthday Phone Fund</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h1>Birthday Phone Fund</h1>
+
+      <!-- ✅ REPLACE with: -->
+      <div class="phone-wrapper">
+        <!-- Phone side buttons (decorative) -->
+        <div class="phone-vol-up"></div>
+        <div class="phone-vol-down"></div>
+        <div class="phone-power"></div>
+
+        <!-- Phone body outline with liquid fill inside -->
+        <div class="phone-body">
+          <!-- Top bar: speaker + camera -->
+          <div class="phone-top-bar">
+            <div class="phone-speaker"></div>
+            <div class="phone-camera"></div>
+          </div>
+
+          <!-- Liquid fill SVG (same as before, just inside phone now) -->
+          <div class="phone-screen-area">
+            <svg
+              id="flaskSvg"
+              viewBox="0 0 140 260"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+              "
+            >
+              <path id="flaskLiquid" fill="#ff4b91" d="M0 260 H140 V260 Z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="message" id="message">
+        0% Raised. Hurry Up! Click on Contribute Now!
+      </div>
+
+      <button class="btn-primary" id="contributeBtn">Contribute Now!</button>
+
+      <div class="top-list" id="topList">
+        <h2>Top 3 contributors</h2>
+        <div id="topItems"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Add your contribution 🎁</div>
+          <button class="modal-close" id="modalCloseBtn" aria-label="Close">
+            &times;
+          </button>
+        </div>
+        <form id="contributionForm">
+          <div class="field">
+            <label for="nameInput">Your name</label>
+            <input id="nameInput" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="amountInput">Amount (₹)</label>
+            <input id="amountInput" type="number" min="1" step="1" required />
+          </div>
+          <div class="error" id="formError"></div>
+          <button
+            type="submit"
+            class="btn-primary"
+            style="width: 100%; margin-top: 4px"
+          >
+            Contribute
+          </button>
+          <div class="small-info">
+            This is just for fun within family – amounts are visible to everyone
+            who has the link.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

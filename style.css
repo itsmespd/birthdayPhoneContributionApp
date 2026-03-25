@@ -1,0 +1,273 @@
+:root {
+  --goal: 120000;
+  --primary: #ff4b91;
+  --bg: #0b1020;
+  --card: #151a2b;
+  --text: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #222a48, #050812);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 24px 24px 32px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 18px;
+}
+
+/* ✅ REPLACE all flask CSS with: */
+
+.phone-wrapper {
+  position: relative;
+  width: 130px;
+  margin: 10px auto 24px;
+}
+
+/* Side buttons */
+.phone-vol-up,
+.phone-vol-down,
+.phone-power {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+}
+
+.phone-vol-up {
+  left: -5px;
+  top: 60px;
+  width: 4px;
+  height: 28px;
+}
+
+.phone-vol-down {
+  left: -5px;
+  top: 96px;
+  width: 4px;
+  height: 28px;
+}
+
+.phone-power {
+  right: -5px;
+  top: 72px;
+  width: 4px;
+  height: 36px;
+}
+
+/* Main phone body */
+.phone-body {
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.5));
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 0;
+  min-height: 280px;
+}
+
+/* Top bar with speaker + camera */
+.phone-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.phone-speaker {
+  width: 36px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+}
+
+.phone-camera {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+/* The liquid fill area — this is the "screen" */
+.phone-screen-area {
+  position: relative;
+  flex: 1;
+  height: 240px;
+  overflow: hidden;
+}
+
+#flaskSvg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.message {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4b91, #ffb86c);
+  color: #111;
+  font-weight: 600;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+  filter: brightness(1.05);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+}
+
+.top-list {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.top-list h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+  margin: 0 0 8px;
+}
+
+.top-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-item:first-of-type {
+  border-top: none;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 18px 20px 20px;
+  width: min(360px, 90vw);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.field {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(3, 7, 20, 0.8);
+  color: #fff;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+input:focus {
+  border-color: #ff8bb2;
+  box-shadow: 0 0 0 1px rgba(255, 139, 178, 0.6);
+}
+
+.error {
+  font-size: 0.78rem;
+  color: #ff9bb5;
+  min-height: 16px;
+  margin-top: 4px;
+}
+
+.small-info {
+  font-size: 0.78rem;
+  opacity: 0.7;
+  margin-top: 4px;
+}
