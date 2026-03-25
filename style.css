@@ -91,10 +91,13 @@ h1 {
   flex-direction: column;
   padding: 10px 0 0;
   min-height: 280px;
+  position: relative; 
 }
 
 /* Top bar with speaker + camera */
 .phone-top-bar {
+  position: relative;
+  z-index: 1;  
   display: flex;
   align-items: center;
   justify-content: center;

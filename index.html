@@ -10,7 +10,6 @@
     <div class="card">
       <h1>Birthday Phone Fund</h1>
 
-      <!-- ✅ REPLACE with: -->
       <div class="phone-wrapper">
         <!-- Phone side buttons (decorative) -->
         <div class="phone-vol-up"></div>
@@ -19,30 +18,31 @@
 
         <!-- Phone body outline with liquid fill inside -->
         <div class="phone-body">
-          <!-- Top bar: speaker + camera -->
+          <!-- SVG covers the ENTIRE phone body including top bar -->
+          <svg
+            id="flaskSvg"
+            viewBox="0 0 140 300"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+            "
+          >
+            <path id="flaskLiquid" fill="#ff4b91" d="M0 300 H140 V300 Z" />
+          </svg>
+
+          <!-- Top bar sits ON TOP of the SVG via z-index -->
           <div class="phone-top-bar">
             <div class="phone-speaker"></div>
             <div class="phone-camera"></div>
           </div>
 
-          <!-- Liquid fill SVG (same as before, just inside phone now) -->
-          <div class="phone-screen-area">
-            <svg
-              id="flaskSvg"
-              viewBox="0 0 140 260"
-              preserveAspectRatio="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-              "
-            >
-              <path id="flaskLiquid" fill="#ff4b91" d="M0 260 H140 V260 Z" />
-            </svg>
-          </div>
+          <div class="phone-screen-area"></div>
         </div>
       </div>
 
@@ -85,8 +85,8 @@
             Contribute
           </button>
           <div class="small-info">
-            This is just for fun within family – amounts are visible to everyone
-            who has the link.
+            This is just for fun within family and friends – No amounts are
+            visible to anyone.
           </div>
         </form>
       </div>

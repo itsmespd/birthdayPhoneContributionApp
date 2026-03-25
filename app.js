@@ -23,10 +23,10 @@ let currentFillPct = 0;
 let targetFillPct = 0;
 
 function buildWavePath(fillPct, offset) {
-  if (fillPct <= 0) return "M0 260 H140 V260 Z";
-  if (fillPct >= 100) return "M0 0 H140 V260 H0 Z";
-
-  const svgHeight = 260;
+  if (fillPct <= 0) return "M0 300 H140 V300 Z";
+  if (fillPct >= 100) return "M0 0 H140 V300 H0 Z";
+  const svgHeight = 300;
+  
   const liquidTop = svgHeight - (fillPct / 100) * svgHeight;
   const amp = 4;       // wave amplitude in px
   const waveLen = 70;  // wavelength
