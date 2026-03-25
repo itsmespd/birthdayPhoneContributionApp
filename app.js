@@ -69,6 +69,23 @@ modalCloseBtn.addEventListener("click", closeModal);
 modalBackdrop.addEventListener("click", (e) => {
   if (e.target === modalBackdrop) closeModal();
 });
+const upiCopyBtn = document.getElementById("upiCopyBtn");
+const upiCopiedMsg = document.getElementById("upiCopiedMsg");
+const UPI_ID = "itsmespd-1@okhdfcbank";
+
+upiCopyBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(UPI_ID).then(() => {
+    upiCopiedMsg.textContent = "✅ UPI ID copied! Open any UPI app to pay.";
+    upiCopyBtn.textContent = "✅ Copied!";
+    setTimeout(() => {
+      upiCopiedMsg.textContent = "";
+      upiCopyBtn.textContent = "📋 Copy UPI ID";
+    }, 3000);
+  }).catch(() => {
+    // Fallback for older mobile browsers
+    upiCopiedMsg.textContent = `UPI ID: ${UPI_ID}`;
+  });
+});
 
 async function fetchDataAndRender(retry = false) {
   if (!API_URL || API_URL.includes("PASTE_YOUR_APPS_SCRIPT")) {
@@ -158,14 +175,46 @@ form.addEventListener("submit", async (e) => {
   submitBtn.disabled = true;
   submitBtn.textContent = "Contributing...";
 
+  // ✅ REPLACE with:
   try {
-  const res = await fetch(API_URL, {
-  method: "POST",
-  mode: "no-cors",        // required for Google Apps Script cross-origin calls
-  headers: { "Content-Type": "text/plain" }, // NOT application/json — avoids preflight
-  body: JSON.stringify({ name, amount }),
-});
-    // Fire confetti
+    // Step 1: Fetch existing contributions to validate
+    submitBtn.textContent = "Checking...";
+    const checkRes = await fetch(API_URL, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    });
+    const checkData = await checkRes.json();
+
+    if (!checkData.ok) throw new Error("Could not verify contributions");
+
+    // Validation 1: Check if name already exists
+    const allContributions = checkData.contributions || [];
+    const allNames = checkData.allNames || [];
+    const alreadyContributed = allNames.includes(name.toLowerCase());
+    if (alreadyContributed) {
+      formError.textContent = "You have already contributed. Thank you for your contribution and enthusiasm! 🙏";
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      return;
+    }
+
+    // Validation 2: Check if amount >= GOAL
+    if (amount >= GOAL) {
+      formError.textContent = `Contribution cannot be greater than the full goal amount. Please enter a smaller amount. 😊`;
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      return;
+    }
+
+    // All validations passed — submit
+    submitBtn.textContent = "Contributing...";
+    await fetch(API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({ name, amount }),
+    });
+
     confetti({
       particleCount: 120,
       spread: 80,
@@ -173,10 +222,7 @@ form.addEventListener("submit", async (e) => {
       colors: ["#ff4b91", "#ffb86c", "#ffffff", "#a78bfa"],
     });
 
-    // Auto close after 2.5 seconds and restore form
     setTimeout(() => {
-      thankYou.remove();
-      form.style.display = "";
       closeModal();
       fetchDataAndRender();
     }, 2500);

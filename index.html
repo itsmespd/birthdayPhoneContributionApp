@@ -68,6 +68,33 @@
           </button>
         </div>
         <form id="contributionForm">
+          <!-- UPI Payment Section -->
+          <div class="upi-section">
+            <p class="upi-instruction">
+              Scan the QR code below to contribute, or copy the UPI ID to pay
+              from your favourite UPI app.
+            </p>
+
+            <div class="upi-qr-wrapper">
+              <img
+                src="./qr-code.jpeg"
+                alt="UPI QR Code"
+                class="upi-qr-img"
+                id="upiQrImage"
+              />
+            </div>
+
+            <div class="upi-divider"><span>or</span></div>
+
+            <button type="button" class="upi-copy-btn" id="upiCopyBtn">
+              📋 Copy UPI ID
+            </button>
+            <div class="upi-copied-msg" id="upiCopiedMsg"></div>
+          </div>
+
+          <div class="upi-divider">
+            <span>then fill in your details below</span>
+          </div>
           <div class="field">
             <label for="nameInput">Your name</label>
             <input id="nameInput" type="text" autocomplete="name" required />
